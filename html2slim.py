@@ -45,14 +45,16 @@ class Slim:
 		from subprocess import call
 		call(cmd, shell=True)
 		return True
-
+	
+	@classmethod
 	def buffer(self, html):
 		html_file = "/tmp/_sublime_buffer.html"
 		slim_file = html_file + ".slim"
 
 		with open(html_file, "w") as tmp_file:
 		  tmp_file.write(html)  
-
+		
+		self.convert(html_file, slim_file)
 		slim = open(slim_file, 'r').read()
 
 		os.remove(html_file)
